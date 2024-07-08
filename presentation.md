@@ -69,6 +69,19 @@ def schnorr(M, x):
 
 ---
 
+~~~
+def digest(data):
+    ...
+
+def schnorr(message, private_key):
+    ...
+    signature_left = digest(exponent_nonce + message)
+    signature_right = nonce + signature_left * private_key
+    return signature_left, signature_right
+~~~
+
+---
+
 Translation into a different domain
 ===================================
 
