@@ -98,7 +98,16 @@ def schnorr(message: bytes, private_key: int) -> tuple[bytes, bytes]:
 Translation into a different domain
 ===================================
 
-**annotating the code with their symbolic counterparts**
+~~~
+def digest(data: bytes) -> 'H':
+    ...
+
+def schnorr(message: 'M', private_key: 'x') -> ('s', 'e'):
+    ...
+    signature_right: 'e' = digest(exponent_nonce + message)
+    signature_left: 's' = nonce + signature_right * private_key
+    return signature_left, signature_right
+~~~
 
 ---
 
