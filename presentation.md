@@ -75,8 +75,21 @@ def digest(data):
 
 def schnorr(message, private_key):
     ...
-    signature_left = digest(exponent_nonce + message)
-    signature_right = nonce + signature_left * private_key
+    signature_right = digest(exponent_nonce + message)
+    signature_left = nonce + signature_right * private_key
+    return signature_left, signature_right
+~~~
+
+---
+
+~~~
+def digest(data: bytes) -> int:
+    ...
+
+def schnorr(message: bytes, private_key: int) -> tuple[bytes, bytes]:
+    ...
+    signature_right = digest(exponent_nonce + message)
+    signature_left = nonce + signature_right * private_key
     return signature_left, signature_right
 ~~~
 
