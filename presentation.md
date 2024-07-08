@@ -54,7 +54,18 @@ So, typing, right?
 Right, so what else…
 ====================
 
-**bit of math code that doesn't benefit much from typing**
+~~~
+def H(b):
+    ...
+
+def schnorr(M, x):
+    ...
+    e = H(r + M)
+    s = k + e * x
+    return s, e
+~~~
+
+*example only, please don't assume this is correct*
 
 ---
 
