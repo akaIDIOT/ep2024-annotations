@@ -111,6 +111,15 @@ def schnorr(message: 'M', private_key: 'x') -> ('s', 'e'):
 
 ---
 
+Translation into a different domain
+===================================
+
+- flake8 is a lot happier
+- both math and python domains represented
+- *annotations used as documentation*
+
+---
+
 Guarding against mistakes
 =========================
 
