@@ -120,10 +120,57 @@ Translation into a different domain
 
 ---
 
-Guarding against mistakes
-=========================
+Guarding function inputs
+========================
 
-**annotating the code with parameter guards**
+- function bodies often contain input validation
+- how about we just annotate what's valid?
+
+~~~
+def schnorr(message: binary(max_size=4096, multiple_of=16),
+            private_key: number(domain='Z', max=q)):
+    ...
+~~~
+
+---
+
+Guarding function inputs
+========================
+
+- no magic 'hook' to *do* the validation
+- the interpreter ignores annotations…
+- if only python had a neat way to wrap a function…
+
+---
+
+Guarding function inputs
+========================
+
+~~~
+def guard(function):
+    arguments = get_annotations(function)
+
+    def wrapped(*args, **kwargs):
+        # match arguments to args and kwargs
+        # validate the guards with the values
+        result = function(*args, **kwargs)
+        # validate result with return guard
+        return result
+
+    return wrapped
+~~~
+
+---
+
+Guarding function inputs
+========================
+
+~~~
+@guard  # decorator will wrap the function, providing our 'hook'
+def schnorr(message: binary(max_size=4096, multiple_of=16),
+            private_key: number(domain='Z', max=q)):
+    ...
+~~~
 
 ---
 
