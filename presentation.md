@@ -174,6 +174,17 @@ def schnorr(message: binary(max_size=4096, multiple_of=16),
 
 ---
 
+~~~
+@dataclass
+class IPv6Packet(DataStruct, BigEndian):
+    source: '16s'
+    destination: '16s'
+    checksum: 'I'
+    ...
+~~~
+
+---
+
 Takeaways
 =========
 
