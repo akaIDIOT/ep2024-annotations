@@ -185,6 +185,17 @@ class IPv6Packet(DataStruct, BigEndian):
 
 ---
 
+Compatibility with typing
+=========================
+
+- can be complicated or impossible
+- potential with `@guard` example
+  - `if typing.TYPE_CHECKING: ...`
+  - decorator can be a no-op
+  - parameters guards can return applicable types
+
+---
+
 Takeaways
 =========
 
