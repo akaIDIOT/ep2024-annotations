@@ -149,6 +149,8 @@ consider the following algorithm (Schnorr signature, WikiPedia):
 Okay, so what else…
 ===================
 
+fairly easy to translate into python
+
 ~~~ python
 def schnorr(M, x):
     ...
@@ -157,7 +159,7 @@ def schnorr(M, x):
     return s, e
 ~~~
 
-*example only, please don't assume this is correct*
+*example only, please don't use or assume this is correct*
 
 ---
 
@@ -191,14 +193,42 @@ def schnorr(message: bytes,
 
 ---
 
+Obviously, typing will improve this
+===================================
+
+- not so sure
+- just `int` and `bytes`
+  - in reality, the sole `int` could be a `bytes` as well…
+
+--
+
+- along comes a mathematician reviewer
+  - knows the algorithm
+
+--
+
+  - *"seems alright, but it's hard to read without the symbols"*
+
+--
+
+… 🤬
+
+---
+
 Translation into a different domain
 ===================================
+
+so, what if we use annotations for this 🤓
+
+--
 
 ~~~ python
 def schnorr(message: 'M', private_key: 'x') -> ('s', 'e'):
     ...
     signature_right: 'e' = digest(exponent_nonce + message)
-    signature_left: 's' = nonce + signature_right * private_key
+    signature_left: 's' = (
+        nonce + signature_right * private_key
+    )
     return signature_left, signature_right
 ~~~
 
@@ -207,9 +237,12 @@ def schnorr(message: 'M', private_key: 'x') -> ('s', 'e'):
 Translation into a different domain
 ===================================
 
-- flake8 is a lot happier
+- linter is a lot happier
 - both math and python domains represented
-- *annotations used as documentation*
+
+--
+
+## annotations used as documentation
 
 ---
 
