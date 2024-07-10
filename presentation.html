@@ -8,40 +8,75 @@
       @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
       @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
-      body { font-family: 'Droid Serif'; }
+      body {
+        font-family: 'Droid Serif';
+      }
       h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
+      }
+      li p {
+        margin: 0;
       }
       p img {
         max-width: 100%;
         max-height: 100%;
       }
-      .remark-slide-content { font-size: 32px; }
+      .remark-slide-content {
+        font-size: 32px;
+      }
       .remark-code, .remark-inline-code {
         font-family: 'Ubuntu Mono';
         font-size: inherit;
+      }
+      .remark-slide-number {
+        display: none;
+      }
+      .title em {
+        font-size: 24px;
+      }
+      .warning {
+        background-color: darkred;
+        color: white;
+      }
+      .warning h1 {
+        font-size: 60px;
+      }
+      .warning h2 {
+        font-size 48px;
       }
     </style>
   </head>
   <body>
     <textarea id="source">
 
-class: center, middle
+class: center, middle, title
 
 Those annotations can have things other than typing?!
 =====================================================
 
 Mattijs Ugen
 
+*EuroPython 2024 — 2024-07-12*
+
 ---
 
-whoami
-======
+`$ whoami`
+==========
 
 - data engineer @ Netherlands Forensic Institute, The Hague
-- use a lot of Python in our day-to-day
-  - see [Threat to Life: Preventing Planned Murders with Python](https://www.youtube.com/watch?v=rrckKR305TU) @ EP2023
+- use a lot of python in day-to-day
+  - used for data wrangling, training or applying ai things
+
+--
+
+- discuss a lot of python
+  - which prompted this talk
+
+--
+
+- but isn't really about any of our work
+  - interested in that? see [Threat to Life: Preventing Planned Murders with Python](https://www.youtube.com/watch?v=rrckKR305TU) @ EP2023
 
 ---
 
@@ -62,8 +97,12 @@ Those annotations can have things other than typing?!
 
 ---
 
+class: center, middle, warning
+
 Should you stop using typing?
 =============================
+
+--
 
 ## no!
 
