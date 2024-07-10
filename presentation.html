@@ -137,13 +137,19 @@ So, typing, right?
 
 ---
 
-Right, so what else…
-====================
+Okay, so what else…
+===================
+
+consider the following algorithm (Schnorr signature, WikiPedia):
+
+![schnorr sign algorithm](./images/schnorr-sign.png)
+
+---
+
+Okay, so what else…
+===================
 
 ~~~ python
-def H(b):
-    ...
-
 def schnorr(M, x):
     ...
     e = H(r + M)
@@ -155,12 +161,15 @@ def schnorr(M, x):
 
 ---
 
-~~~ python
-def digest(data):
-    ...
+Mathematicians are weird
+========================
 
+pythonistas know better; *readability counts*
+
+~~~ python
 def schnorr(message, private_key):
     ...
+    # function "H" was hard to look at too…
     signature_right = digest(exponent_nonce + message)
     signature_left = nonce + signature_right * private_key
     return signature_left, signature_right
@@ -168,11 +177,12 @@ def schnorr(message, private_key):
 
 ---
 
-~~~ python
-def digest(data: bytes) -> int:
-    ...
+Obviously, typing will improve this
+===================================
 
-def schnorr(message: bytes, private_key: int) -> tuple[bytes, bytes]:
+~~~ python
+def schnorr(message: bytes, 
+            private_key: int) -> tuple[bytes, bytes]:
     ...
     signature_right = digest(exponent_nonce + message)
     signature_left = nonce + signature_right * private_key
@@ -185,9 +195,6 @@ Translation into a different domain
 ===================================
 
 ~~~ python
-def digest(data: bytes) -> 'H':
-    ...
-
 def schnorr(message: 'M', private_key: 'x') -> ('s', 'e'):
     ...
     signature_right: 'e' = digest(exponent_nonce + message)
