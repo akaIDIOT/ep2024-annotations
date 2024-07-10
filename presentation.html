@@ -249,8 +249,21 @@ Translation into a different domain
 Guarding function inputs
 ========================
 
-- function bodies often contain input validation
-- how about we just annotate what's valid?
+function bodies often contain input validation
+
+~~~ python
+def schnorr(message, private_key):
+    if len(message) > MAX_SIZE or not len(message) % 16:
+        raise ValueError('incompatible message size')
+    ...
+~~~
+
+---
+
+Guarding function inputs
+========================
+
+how about we just annotate what's valid?
 
 ~~~ python
 def schnorr(message: binary(max_size=4096, multiple_of=16),
@@ -265,7 +278,10 @@ Guarding function inputs
 
 - no magic 'hook' to *do* the validation
 - the interpreter ignores annotations…
-- if only python had a neat way to wrap a function…
+
+--
+
+- if only python had a neat way to wrap a function with some code… 🤔
 
 ---
 
@@ -277,10 +293,10 @@ def guard(function):
     arguments = get_annotations(function)
 
     def wrapped(*args, **kwargs):
-        # match arguments to args and kwargs
-        # validate the guards with the values
+        # TODO: match arguments to args and kwargs
+        # TODO: validate the guards with the values
         result = function(*args, **kwargs)
-        # validate result with return guard
+        # TODO: validate result with return guard
         return result
 
     return wrapped
@@ -292,7 +308,7 @@ Guarding function inputs
 ========================
 
 ~~~ python
-@guard  # decorator will wrap the function, providing our 'hook'
+@guard  # decorator will wrap the function, our 'hook'
 def schnorr(message: binary(max_size=4096, multiple_of=16),
             private_key: number(domain='Z', max=q)):
     ...
@@ -300,30 +316,62 @@ def schnorr(message: binary(max_size=4096, multiple_of=16),
 
 ---
 
+Other places for annotations?
+=============================
+
 ~~~ python
 @dataclass
 class IPv6Packet(DataStruct, BigEndian):
+    length: 'H'
+    next_header: 'B'
+    hop_limit: 'B'
     source: '16s'
     destination: '16s'
-    checksum: 'I'
     ...
+
+
+packet = IPv6Packet.unpack(data)
 ~~~
+
+--
+
+in a way… this *is* typing information 😇
 
 ---
 
 Compatibility with typing
 =========================
 
-- can be complicated or impossible
+- can be complicated
 - potential with `@guard` example
   - `if typing.TYPE_CHECKING: ...`
   - decorator can be a no-op
-  - parameters guards can return applicable types
+  - parameter guards can return applicable types
+
+--
+
+- does it have to be that much of a mess? 😓
 
 ---
 
-Takeaways
-=========
+Batteries included 😅
+====================
+
+~~~ python
+def schnorr(message: typing.Annotated[bytes, 'M'],
+            private_key: typing.Annotated[int, 'x']) -> ...
+~~~
+
+- combines typing with … *anything!*
+
+--
+
+- does require *your* anything to expect (or inspect) it
+
+---
+
+Takeaways 🚀
+===========
 
 - annotations are just python
 
@@ -337,7 +385,11 @@ Takeaways
 
 --
 
-- but there's more than typing
+- the interpreter will ignore them at runtime
+
+--
+
+- but there *is* more than typing
 
 --
 
