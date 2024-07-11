@@ -15,12 +15,26 @@
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
       }
+      a {
+        color: blue;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      a:visited {
+        color: blue;
+      }
       li p {
         margin: 0;
       }
       p img {
         max-width: 100%;
         max-height: 100%;
+      }
+      li a img, p a img {
+        max-height: 1em;
+        vertical-align: middle;
       }
       .remark-slide-content {
         font-size: 32px;
@@ -31,6 +45,10 @@
       }
       .remark-slide-number {
         display: none;
+      }
+      .right img {
+        float: right;
+        max-width: 30%;
       }
       .title em {
         font-size: 24px;
@@ -61,8 +79,10 @@ Mattijs Ugen
 
 ---
 
-`$ whoami`
-==========
+`$ whoami` 👋
+============
+
+.right[![me](images/portrait.jpg)]
 
 - data engineer @ Netherlands Forensic Institute, The Hague
 - use a lot of python in day-to-day
@@ -77,6 +97,7 @@ Mattijs Ugen
 
 - but isn't really about any of our work
   - interested in that? see [Threat to Life: Preventing Planned Murders with Python](https://www.youtube.com/watch?v=rrckKR305TU) @ EP2023
+  - or check out our github [![Netherlands Forensic Institute GitHub](images/github-mark.png) NetherlandsForensicInstitute](https://github.com/NetherlandsForensicInstitute/)
 
 ---
 
@@ -158,6 +179,8 @@ def schnorr(M, x):
     s = k + e * x
     return s, e
 ~~~
+
+--
 
 *example only, please don't use or assume this is correct*
 
@@ -395,6 +418,17 @@ Takeaways 🚀
 
 - …
 - if you want there to be 😎
+
+---
+
+class: center, middle, title
+
+Thanks for your attention 🙏
+===========================
+
+![slides on GitHub](images/qr-slides.png)
+
+[![GitHub repository for the slides](images/github-mark.png) akaIDIOT/ep2024-annotations](https://github.com/akaIDIOT/ep2024-annotations/)
 
     </textarea>
     <script src="https://remarkjs.com/downloads/remark-latest.min.js">
